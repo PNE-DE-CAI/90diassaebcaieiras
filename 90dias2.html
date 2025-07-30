@@ -3,514 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jornada 90 dias SAEB - Controle de Escolas</title>
+    <title>Diretoria de Ensino de Caieiras - SAEB 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .tab-content {
-            display: none;
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
         }
-        .tab-content.active {
-            display: block;
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #d10000 0%, #7a0000 100%);
         }
-        .checkbox-container {
+        
+        .countdown-box {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
         }
-        .checkbox-container:hover {
-            background-color: #f8f9fa;
+        
+        .countdown-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
         }
-        .completed {
-            background-color: #f8f9fa;
+        
+        .pillar-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #d10000;
         }
-        .completed .checkbox-label {
-            text-decoration: line-through;
-            color: #dc3545;
+        
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        [type="checkbox"]:checked {
-            background-color: #dc3545;
-            border-color: #dc3545;
+        
+        .tab-active {
+            border-bottom: 3px solid #d10000;
+            font-weight: bold;
         }
     </style>
 </head>
 <body class="bg-gray-100">
-    <!-- Banner with Logo -->
-    <div class="bg-red-700 text-white py-4 shadow-md">
-        <div class="container mx-auto px-4 flex items-center justify-between">
-            <div class="flex items-center">
-                <img src="https://via.placeholder.com/80x80?text=LOGO" alt="Logo" class="h-16 mr-4">
-                <div>
-                    <h1 class="text-2xl font-bold">Jornada 90 dias SAEB</h1>
-                    <p class="text-sm">Secretaria de Educação</p>
+    <!-- Header with Logo -->
+    <header class="gradient-bg text-white">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="bg-white p-2 rounded-full mr-4">
+                        <img src="https://i.ibb.co/B5LpJHGb/LOGO-DE.png" alt="Logo Diretoria de Ensino de Caieiras" class="h-16 w-16">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">DIRETORIA DE ENSINO</h1>
+                        <p class="text-sm">Região de Caieiras</p>
+                    </div>
                 </div>
-            </div>
-            <div class="text-right">
-                <p class="text-sm">Controle de Atividades</p>
-                <p class="text-xs">Versão 1.0</p>
+                <nav class="flex space-x-1 md:space-x-4">
+                    <a href="#home" class="px-3 py-2 rounded hover:bg-red-800 transition">Início</a>
+                    <a href="#saeb" class="px-3 py-2 rounded hover:bg-red-800 transition">SAEB</a>
+                    <a href="#pilares" class="px-3 py-2 rounded hover:bg-red-800 transition">Pilares</a>
+                    <a href="90dias3.html" class="px-3 py-2 rounded hover:bg-red-800 transition">Brasileirão SAEB</a>
+                    <a href="https://docs.google.com/presentation/d/18tc6dis5zVkwZfbCZT3MiR-4SoBpuTfxP9JyHcqRSGU/edit?usp=sharing" class="px-3 py-2 rounded hover:bg-red-800 transition">Calendário</a>
+                    <a href="#contato" class="px-3 py-2 rounded hover:bg-red-800 transition">Contato</a>
+                </nav>
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="container mx-auto px-4 py-6">
-        <header class="mb-6 text-center">
-            <h2 class="text-2xl font-bold text-black mb-1">Controle de Atividades por Escola</h2>
-            <p class="text-gray-600">Acompanhamento das ações da Jornada SAEB</p>
-            <div class="mt-4">
-                <div class="relative max-w-md mx-auto">
-                    <input type="text" id="search-school" placeholder="Buscar escola..." 
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
-                    <i class="fas fa-search absolute right-3 top-3 text-gray-500"></i>
-                </div>
-            </div>
-        </header>
-
-        <div class="flex flex-col md:flex-row gap-6">
-            <!-- School List -->
-            <div class="w-full md:w-1/4 bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="bg-black text-white px-4 py-3">
-                    <h2 class="font-semibold">Lista de Escolas</h2>
-                </div>
-                <div class="overflow-y-auto max-h-[600px]">
-                    <ul id="school-list" class="divide-y divide-gray-200">
-                        <!-- Schools will be inserted here by JavaScript -->
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Checklist Content -->
-            <div class="w-full md:w-3/4">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="bg-red-700 text-white px-4 py-3">
-                        <h2 id="current-school" class="font-semibold">Selecione uma escola</h2>
+    <!-- Banner -->
+    <section id="home" class="relative">
+        <div class="bg-black">
+        <img src="https://i.ibb.co/Pv9NJdmW/Jornada-SAEB-Simulado-SAEB.png" alt="Banner SAEB 2025" class="w-full h-auto opacity-70">
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center px-4">
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-4">SAEB 2025</h2>
+                <p class="text-xl md:text-2xl text-white mb-8">Juntos por uma educação de qualidade</p>
+                <div class="absolute inset-0 flex items-center justify-center">
+                <a href="#saeb" class="bg-red-600 hover:bg-red-700 text-white font-bold py-0 px-3 rounded-full transition duration-300">Saiba Mais</a>
                     </div>
-                    
-                    <div class="p-4">
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <button class="week-btn px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium" data-week="all">Todas</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="1">Semana 1</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="2">Semana 2</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="3">Semana 3</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="4">Semana 4</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="5">Semana 5</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="6">Semana 6</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="7">Semana 7</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="8">Semana 8</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="9">Semana 9</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="10">Semana 10</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="11">Semana 11</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="12">Semana 12</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="final">Semanas Finais</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="saeb">Aplicação SAEB</button>
-                            <button class="week-btn px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium" data-week="encerramento">Encerramento</button>
-                        </div>
+                            </div>
+        </div>
+    </section>
 
-                        <div id="checklist-container">
-                            <!-- Checklist items will be inserted here by JavaScript -->
-                            <div class="text-center py-10 text-gray-500">
-                                <i class="fas fa-school text-4xl mb-3"></i>
-                                <p>Selecione uma escola para visualizar e editar o checklist</p>
+    <!-- Countdown Section -->
+    <section class="py-12 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Contagem Regressiva para o SAEB</h2>
+            <div class="flex justify-center">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+                    <div class="countdown-box bg-gray-800 rounded-lg p-6 text-center">
+                        <div id="days" class="text-5xl font-bold text-red-400">90</div>
+                        <div class="text-gray-400 mt-2">Dias</div>
+                    </div>
+                    <div class="countdown-box bg-gray-800 rounded-lg p-6 text-center">
+                        <div id="hours" class="text-5xl font-bold text-red-400">00</div>
+                        <div class="text-gray-400 mt-2">Horas</div>
+                    </div>
+                    <div class="countdown-box bg-gray-800 rounded-lg p-6 text-center">
+                        <div id="minutes" class="text-5xl font-bold text-red-400">00</div>
+                        <div class="text-gray-400 mt-2">Minutos</div>
+                    </div>
+                    <div class="countdown-box bg-gray-800 rounded-lg p-6 text-center">
+                        <div id="seconds" class="text-5xl font-bold text-red-400">00</div>
+                        <div class="text-gray-400 mt-2">Segundos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAEB Section -->
+    <section id="saeb" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">SAEB - Sistema de Avaliação da Educação Básica</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-100 rounded-lg p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4 text-red-600">Breve Histórico</h3>
+                    <p class="text-gray-700">
+                        O SAEB foi criado em 1990 com o objetivo de avaliar a qualidade da educação básica brasileira. 
+                        Ao longo dos anos, passou por diversas reformulações, tornando-se um dos principais instrumentos 
+                        de avaliação da educação no país. Em 2019, foi reformulado para incluir a avaliação da educação 
+                        infantil e para se alinhar à Base Nacional Comum Curricular (BNCC).
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-100 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 text-red-600">Objetivos</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Avaliar a qualidade da educação básica brasileira</li>
+                            <li>Oferecer subsídios para a formulação de políticas educacionais</li>
+                            <li>Identificar desigualdades regionais e sociais</li>
+                            <li>Monitorar o desenvolvimento do sistema educacional</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 text-red-600">Componentes Avaliados</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Língua Portuguesa</li>
+                            <li>Matemática</li>
+                            <li>Ciências da Natureza (a partir do 9º ano)</li>
+                            <li>Ciências Humanas (a partir do 9º ano)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilares Section -->
+    <section id="pilares" class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Os 4 Pilares da Nossa Jornada</h2>
+            
+            <!-- Tabs Navigation -->
+            <div class="flex overflow-x-auto pb-2 mb-8 scrollbar-hide">
+                <div class="flex space-x-1">
+                    <button onclick="openPillar('aprendizagem')" class="tab-button px-4 py-2 bg-white text-gray-800 rounded-t-lg tab-active">
+                        Aprendizagem
+                    </button>
+                    <button onclick="openPillar('engajamento')" class="tab-button px-4 py-2 bg-white text-gray-800 rounded-t-lg">
+                        Engajamento
+                    </button>
+                    <button onclick="openPillar('acompanhamento')" class="tab-button px-4 py-2 bg-white text-gray-800 rounded-t-lg">
+                        Acompanhamento
+                    </button>
+                    <button onclick="openPillar('simulado')" class="tab-button px-4 py-2 bg-white text-gray-800 rounded-t-lg">
+                        Simulado
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tabs Content -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <!-- Pilar Aprendizagem -->
+                <div id="aprendizagem" class="pillar-content p-6">
+                    <div class="flex flex-col md:flex-row items-start">
+                        <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+                            <div class="bg-red-100 p-4 rounded-lg">
+                                <h3 class="text-xl font-bold text-red-800 mb-2">Responsável: Celso</h3>
+                                <p class="text-gray-700">Especialista em metodologias ativas e aprendizagem significativa.</p>
+                            </div>
+                            <img src="https://via.placeholder.com/300x200/d10000/ffffff?text=Celso" alt="Celso" class="mt-4 rounded-lg w-full">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Jornada - Pilar Aprendizagem</h3>
+                            <p class="text-gray-700 mb-4">
+                                O pilar Aprendizagem concentra-se no desenvolvimento de estratégias pedagógicas que garantam 
+                                a efetiva assimilação dos conteúdos avaliados no SAEB. Trabalhamos com:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li>Planejamento de aulas alinhadas à BNCC</li>
+                                <li>Metodologias ativas de ensino</li>
+                                <li>Recuperação paralela para estudantes com dificuldades</li>
+                                <li>Oficinas de produção textual</li>
+                                <li>Resolução de problemas matemáticos</li>
+                            </ul>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2">Materiais de Apoio:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <a href="https://drive.google.com/drive/folders/1LSfyzW4PUIsWFKAQ6ldef7ciEYtj21Gr?usp=drive_link" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-full text-sm">Planos de Aula</a>
+                                    <a href="#" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-full text-sm">Atividades</a>
+                                    <a href="#" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-full text-sm">Vídeo Aulas</a>
+                                    <a href="#" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-full text-sm">Banco de Questões</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pilar Engajamento -->
+                <div id="engajamento" class="pillar-content hidden p-6">
+                    <div class="flex flex-col md:flex-row items-start">
+                        <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+                            <div class="bg-red-100 p-4 rounded-lg">
+                                <h3 class="text-xl font-bold text-red-800 mb-2">Responsáveis: Celso e Tiago</h3>
+                                <p class="text-gray-700">Especialistas em motivação estudantil e competições educacionais.</p>
+                            </div>
+                            <img src="https://via.placeholder.com/300x200/d10000/ffffff?text=Celso+%26+Tiago" alt="Celso e Tiago" class="mt-4 rounded-lg w-full">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Jornada - Pilar Engajamento (Brasileirão SAEB)</h3>
+                            <p class="text-gray-700 mb-4">
+                                O Brasileirão SAEB é uma estratégia inovadora para engajar estudantes e professores na preparação 
+                                para as avaliações. Funciona como um campeonato com:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li>Rodadas de simulados periódicos</li>
+                                <li>Classificação por escolas e turmas</li>
+                                <li>Premiação para os melhores desempenhos</li>
+                                <li>Gamificação do processo de aprendizagem</li>
+                                <li>Envolvimento da comunidade escolar</li>
+                            </ul>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2">Tabela do Brasileirão SAEB:</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full bg-white">
+                                        <thead>
+                                            <tr class="bg-gray-200">
+                                                <th class="py-2 px-4">Posição</th>
+                                                <th class="py-2 px-4">Escola</th>
+                                                <th class="py-2 px-4">Pontos</th>
+                                                <th class="py-2 px-4">Desempenho</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b">
+                                                <td class="py-2 px-4 text-center">1º</td>
+                                                <td class="py-2 px-4">EE CHACARA CAMPONESA JARDIM VASSOURAS</td>
+                                                <td class="py-2 px-4 text-center">85</td>
+                                                <td class="py-2 px-4">
+                                                    <div class="h-2 bg-gray-300 rounded-full">
+                                                        <div class="h-2 bg-green-500 rounded-full" style="width: 90%"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 px-4 text-center">2º</td>
+                                                <td class="py-2 px-4">EE JARDIM ALEGRIA II</td>
+                                                <td class="py-2 px-4 text-center">78</td>
+                                                <td class="py-2 px-4">
+                                                    <div class="h-2 bg-gray-300 rounded-full">
+                                                        <div class="h-2 bg-blue-500 rounded-full" style="width: 80%"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 px-4 text-center">3º</td>
+                                                <td class="py-2 px-4">EE JOSE DE BARROS MARTINS EDITOR</td>
+                                                <td class="py-2 px-4 text-center">72</td>
+                                                <td class="py-2 px-4">
+                                                    <div class="h-2 bg-gray-300 rounded-full">
+                                                        <div class="h-2 bg-yellow-500 rounded-full" style="width: 75%"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pilar Acompanhamento -->
+                <div id="acompanhamento" class="pillar-content hidden p-6">
+                    <div class="flex flex-col md:flex-row items-start">
+                        <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+                            <div class="bg-red-100 p-4 rounded-lg">
+                                <h3 class="text-xl font-bold text-red-800 mb-2">Responsáveis: Miro e Paula</h3>
+                                <p class="text-gray-700">Especialistas em análise de dados e acompanhamento pedagógico.</p>
+                            </div>
+                            <img src="https://via.placeholder.com/300x200/d10000/ffffff?text=Miro+%26+Paula" alt="Miro e Paula" class="mt-4 rounded-lg w-full">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Jornada - Pilar Acompanhamento</h3>
+                            <p class="text-gray-700 mb-4">
+                                O acompanhamento sistemático é fundamental para identificar avanços e dificuldades ao longo 
+                                do processo de preparação. Nossas ações incluem:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li>Análise de dados de desempenho por escola, turma e estudante</li>
+                                <li>Reuniões periódicas com coordenadores pedagógicos</li>
+                                <li>Relatórios personalizados de evolução</li>
+                                <li>Identificação de estudantes que necessitam de apoio específico</li>
+                                <li>Ajustes no planejamento com base nos resultados</li>
+                            </ul>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2">Próximas Reuniões:</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-start">
+                                        <div class="bg-red-600 text-white rounded-full p-2 mr-3">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Reunião com Coordenadores</p>
+                                            <p class="text-sm text-gray-600">15/08/2023 - 14h às 16h</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="bg-red-600 text-white rounded-full p-2 mr-3">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Análise de Resultados Parciais</p>
+                                            <p class="text-sm text-gray-600">30/08/2023 - 10h às 12h</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pilar Simulado -->
+                <div id="simulado" class="pillar-content hidden p-6">
+                    <div class="flex flex-col md:flex-row items-start">
+                        <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+                            <div class="bg-red-100 p-4 rounded-lg">
+                                <h3 class="text-xl font-bold text-red-800 mb-2">Responsáveis: Marcia e Isabel</h3>
+                                <p class="text-gray-700">Especialistas em avaliação educacional e correção de provas.</p>
+                            </div>
+                            <img src="https://via.placeholder.com/300x200/d10000/ffffff?text=Marcia+%26+Isabel" alt="Marcia e Isabel" class="mt-4 rounded-lg w-full">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Simulado SAEB (Aplicação e Correção)</h3>
+                            <p class="text-gray-700 mb-4">
+                                Os simulados são ferramentas essenciais para familiarizar os estudantes com o formato da prova 
+                                e identificar pontos que necessitam de reforço. Nosso processo inclui:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li>Elaboração de provas com o mesmo formato do SAEB</li>
+                                <li>Orientações para aplicação padronizada</li>
+                                <li>Correção com base nas matrizes de referência</li>
+                                <li>Devolutiva detalhada para professores e estudantes</li>
+                                <li>Plano de ação pós-simulado</li>
+                            </ul>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2">Calendário de Simulados 2025:</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="border-l-4 border-red-600 pl-4">
+                                        <p class="font-semibold">1º Simulado</p>
+                                        <p class="text-sm text-gray-600">Aplicação: 05/09/2023</p>
+                                        <p class="text-sm text-gray-600">Resultados: 15/09/2023</p>
+                                    </div>
+                                    <div class="border-l-4 border-red-600 pl-4">
+                                        <p class="font-semibold">2º Simulado</p>
+                                        <p class="text-sm text-gray-600">Aplicação: 10/10/2023</p>
+                                        <p class="text-sm text-gray-600">Resultados: 20/10/2023</p>
+                                    </div>
+                                    <div class="border-l-4 border-red-600 pl-4">
+                                        <p class="font-semibold">Simulado Final</p>
+                                        <p class="text-sm text-gray-600">Aplicação: 07/11/2023</p>
+                                        <p class="text-sm text-gray-600">Resultados: 14/11/2023</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-12 bg-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Entre em Contato</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Diretoria de Ensino de Caieiras</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-red-600 text-white rounded-full p-2 mr-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p>Rua da Educação, 123 - Centro</p>
+                                <p>Caieiras - SP</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-red-600 text-white rounded-full p-2 mr-3">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p>(11) 4444-5555</p>
+                                <p>Atendimento: 8h às 17h</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-red-600 text-white rounded-full p-2 mr-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p>decaieiras@educacao.sp.gov.br</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Equipe SAEB</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-red-400">Celso</p>
+                            <p class="text-sm">Pilar Aprendizagem</p>
+                            <p class="text-xs">celso@educacao.sp.gov.br</p>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-red-400">Tiago</p>
+                            <p class="text-sm">Pilar Engajamento</p>
+                            <p class="text-xs">tiago@educacao.sp.gov.br</p>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-red-400">Miro</p>
+                            <p class="text-sm">Pilar Acompanhamento</p>
+                            <p class="text-xs">miro@educacao.sp.gov.br</p>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-red-400">Paula</p>
+                            <p class="text-sm">Pilar Acompanhamento</p>
+                            <p class="text-xs">paula@educacao.sp.gov.br</p>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-red-400">Marcia</p>
+                            <p class="text-sm">Simulado SAEB</p>
+                            <p class="text-xs">marcia@educacao.sp.gov.br</p>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-red-400">Isabel</p>
+                            <p class="text-sm">Simulado SAEB</p>
+                            <p class="text-xs">isabel@educacao.sp.gov.br</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2025 Diretoria de Ensino de Caieiras</p>
+                    <p class="text-sm text-gray-400">Todos os direitos reservados</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // School data
-        const schools = [
-            "E.E. ADAIL JARBAS DUCLOS",
-            "E.E. AFONSO MORENO",
-            "E.E. ALADINO POLON",
-            "E.E. ALBERTO GRAF – CAPITÃO",
-            "E.E. ALBINO FIORE",
-            "E.E. ALFRIED THEODOR WEISZFLOG",
-            "E.E. ANA MARIA GARRIDO ORLANDIN – PROF.ª",
-            "E.E. APARECIDO ROBERTO TONELLOTTI – PROF.",
-            "E.E. ARMANDO SESTINI",
-            "E.E. ARTHUR WEINGRILL",
-            "E.E. AZEVEDO SOARES",
-            "E.E. BAIRRO DO ITAIM",
-            "E.E. BAIRRO JUNDIAIZINHO",
-            "E.E. BELÉM DA SERRA",
-            "E.E. BENEDITO APARECIDO TAVARES – PROF.",
-            "E.E. BENEDITO FAGUNDES MARQUES",
-            "E.E. BUENO DE AZEVEDO FILHO – PROF.",
-            "E.E. CARLOS AUGUSTO DE PÁDUA FLEURY – PROF.",
-            "E.E. CELESTINA VALENTE LENGENFELDER – PROF.ª",
-            "E.E. CHÁCARA CAMPONESA/ Jd Vassouras",
-            "E.E. DOMINGOS CAMBIAGHI – PROF.",
-            "E.E. ÉLCIO JOSÉ PEREIRA COTRIM – PROF.",
-            "E.E. ELVIRA PARADA MANGA – PROF.ª",
-            "E.E. FRANCISCO GONÇALVES VIEIRA – PROFº",
-            "E.E. HERMELINA DE ALBUQUERQUE PASSARELLA – PROF.ª",
-            "E.E. IRACI SARTORI VIEIRA DA SILVA – PROF.ª",
-            "E.E. ISAÍAS LUIZ MATIAZZO",
-            "E.E. ISAURA DE MIRANDA BOTTO – PROFª",
-            "E.E. ISAURA VALENTINI HANSER – PROFª",
-            "E.E. IVONE DOS ANJOS DA SILVA CAMPOS – PROF.ª",
-            "E.E. JARDIM ALEGRIA II",
-            "E.E. JARDIM DAS ROSAS",
-            "E.E. JARDIM SÃO FRANCISCO",
-            "E.E. JARDIM SILVIA II",
-            "E.E. JOAQUIM MARQUES DA SILVA SOBRINHO – TTE.",
-            "E.E. JOCIMARA VIEIRA DA SILVA – PROF.ª",
-            "E.E. JOSÉ CARLOS DA SILVA JUNIOR",
-            "E.E. JOSÉ DE BARROS MARTINS – EDITOR",
-            "E.E. JOSÉ PARADA – PROF.",
-            "E.E. JOSÉ ROBERTO MELCHIOR – DR.",
-            "E.E. KÁTIA MARIA TARIFA LEME TONELLI – PROF.ª",
-            "E.E. LENITA CORRÊA CAMARGO – PROF.ª",
-            "E.E. LUIZ ALEXANDRE DOS SANTOS – VEREADOR",
-            "E.E. LYDIA SCALET WALKER – PROF.ª",
-            "E.E. MARIA ZEZA GOMES DE OLIVEIRA",
-            "E.E. MARIO TOLEDO DE MORAES – DR.",
-            "E.E. NAIR HANNICKEL ROMARO",
-            "E.E. NELSON MANZANARES – DR.",
-            "E.E. NIDE ZAIM CARDOSO – PROF.ª",
-            "E.E. ODARICO OLIVEIRA NASCIMENTO – PROF.",
-            "E.E. OTTO WEISZFLOG",
-            "E.E. OZILDE ALBUQUERQUE PASSARELLA – DR.",
-            "E.E. PARQUE CENTO E VINTE II",
-            "E.E. PAULO DUARTE",
-            "E.E. PEDRO GALRÃO DO NASCIMENTO",
-            "E.E. PEDRO LELIS DE SOUZA – PREFEITO",
-            "E.E. PEDRO PAULO AGUIAR",
-            "E.E. PIETRO PETRI",
-            "E.E. RITUCO MITANI – PROF.ª",
-            "E.E. ROGÉRIO LEVORIN – PROF.",
-            "E.E. SUZANA DIAS",
-            "E.E. ULYSSES SANCHES RAMIRES – PROF.",
-            "E.E. VINCENZO LOBASSI",
-            "E.E. WALTER RIBAS DE ANDRADE – PROF.",
-            "E.E. WALTHER WEISZFLOG",
-            "E.E. ZILTON BICUDO – PROF.",
-            "E.E. OLINDO DÁRTORA – DR."
-        ];
-
-        // Checklist data
-        const checklistItems = [
-            {
-                week: 1,
-                items: [
-                    { code: "JOR", text: "Garantir que a equipe gestora, professores e funcionários acompanhem a live de planejamento no dia 21/07, na qual a Jornada 90 dias SAEB será apresentada pela SEDUC." },
-                    { code: "JOR", text: "Planejar cronograma interno das ações previstas no guia." },
-                    { code: "JOR", text: "Agendar reunião com pais/responsáveis das turmas do 5º ano, 9º ano e 3ª série para a semana de 04 a 08 de agosto." },
-                    { code: "PLA", text: "Realizar reunião de orientação com professores de Orientação de Estudos, Língua Portuguesa e Matemática das séries envolvidas (5º ano, 9º ano e 3ª série)." },
-                    { code: "PLA", text: "Verificar níveis de proficiência no BI Plano de Aprendizagem e checar se professores de OE estão com o plano correto para o planejamento das aulas." },
-                    { code: "BRA", text: "Organizar material de divulgação do Brasileirão SAEB." },
-                    { code: "TUR", text: "Identificar no BI Plano de Aprendizagem quais são as turmas que mais precisam de apoio para evoluírem no nível de proficiência." }
-                ]
-            },
-            {
-                week: 2,
-                items: [
-                    { code: "JOR", text: "Mobilizar estudantes para realização do 2º simulado SAEB nos dias 12 a 15 de agosto." },
-                    { code: "PLA", text: "Iniciar a execução dos Planos de Aprendizagem (Orientação de Estudos) e listas de exercícios (Língua Portuguesa/Matemática)." },
-                    { code: "BRA", text: "Apresentar o Brasileirão SAEB aos estudantes com apoio de professores que possuem mais afinidade com as turmas." },
-                    { code: "BRA", text: "Definir nomes dos times e mascotes para o Brasileirão SAEB." },
-                    { code: "TUR", text: "Realizar reunião de alinhamento com professores das turmas que mais precisam de apoio para definição de estratégias que possam apoiar os professores de Orientação de Estudos, Língua Portuguesa e Matemática." }
-                ]
-            },
-            {
-                week: 3,
-                items: [
-                    { code: "JOR", text: "Executar reunião com pais/responsáveis sobre SAEB, Jornada e pedido de cartas de apoio." },
-                    { code: "JOR", text: "Finalizar cronograma e logística do 2º Simulado SAEB (12 a 15/08)." },
-                    { code: "JOR", text: "Monitorar indicadores de frequência na quinzena anterior nas turmas envolvidas e realizar busca ativa." },
-                    { code: "PLA", text: "Realizar as tarefas da 1ª etapa do Plano de Aprendizagem (publicadas na semana anterior)." },
-                    { code: "BRA", text: "Montar o mural físico do Brasileirão em local de grande circulação, incorporando nome/mascote escolhidos por cada turma." },
-                    { code: "BRA", text: "Organizar Taça Brasileirão SAEB e colocá-la em exposição na escola." },
-                    { code: "TUR", text: "Fazer apoio presencial nas aulas de Orientação de Estudos, Língua Portuguesa e Matemática das turmas que mais precisam de apoio." }
-                ]
-            },
-            {
-                week: 4,
-                items: [
-                    { code: "JOR", text: "Aplicar o 2º Simulado SAEB nos dias 12 a 15 de agosto." },
-                    { code: "PLA", text: "Orientar professores que tiveram dificuldades para realizar a 1ª etapa do Plano de Aprendizagem." },
-                    { code: "PLA", text: "Iniciar a 2ª etapa do Plano de Aprendizagem nas aulas de OE." },
-                    { code: "BRA", text: "Atualizar o ranking do mural/painel com indicadores da 1ª quinzena." }
-                ]
-            },
-            {
-                week: 5,
-                items: [
-                    { code: "JOR", text: "Monitorar indicadores de frequência na quinzena anterior nas turmas envolvidas e realizar busca ativa." },
-                    { code: "PLA", text: "Realizar as tarefas da 2ª etapa do Plano de Aprendizagem (publicadas na semana anterior)." },
-                    { code: "TUR", text: "Fazer apoio presencial nas aulas de Orientação de Estudos, Língua Portuguesa e Matemática das turmas que mais precisam de apoio." }
-                ]
-            },
-            {
-                week: 6,
-                items: [
-                    { code: "JOR", text: "Finalizar coleta de cartas dos pais/responsáveis que faltam." },
-                    { code: "PLA", text: "Iniciar a 3ª etapa do Plano de Aprendizagem nas aulas de OE." },
-                    { code: "BRA", text: "Atualizar o ranking do mural/painel com indicadores da 2ª quinzena." },
-                    { code: "BRA", text: "Reforçar entrega de tarefas pendentes." }
-                ]
-            },
-            {
-                week: 7,
-                items: [
-                    { code: "JOR", text: "Monitorar indicadores de frequência na quinzena anterior nas turmas envolvidas e realizar busca ativa." },
-                    { code: "PLA", text: "Realizar as tarefas da 3ª etapa do Plano de Aprendizagem (publicadas na semana anterior)." },
-                    { code: "PLA", text: "Fazer devolutiva dos resultados do 2º Simulado SAEB." },
-                    { code: "PLA", text: "Revisar os níveis de proficiência atualizados no BI." },
-                    { code: "PLA", text: "Reorganizar as turmas que precisarem de ajuste no Plano de Aprendizagem." },
-                    { code: "PLA", text: "Formar professores de OE para orientá-los sobre as principais dúvidas antes de iniciarem o segundo ciclo do Plano de Aprendizagem." },
-                    { code: "TUR", text: "Fazer apoio presencial nas aulas de Orientação de Estudos, Língua Portuguesa e Matemática das turmas que mais precisam de apoio." }
-                ]
-            },
-            {
-                week: 8,
-                items: [
-                    { code: "PLA", text: "Iniciar Plano de Aprendizagem alinhado ao nível atualizado." },
-                    { code: "PLA", text: "Monitorar resultados do primeiro ciclo do Plano de Aprendizagem e reforçar devolutiva para equipe." },
-                    { code: "BRA", text: "Atualizar ranking mural/painel com indicadores da 3ª quinzena." }
-                ]
-            },
-            {
-                week: 9,
-                items: [
-                    { code: "JOR", text: "Organizar fala motivacional da gestão para turmas do SAEB." },
-                    { code: "JOR", text: "Engajar professores/tutores para conversas individuais." },
-                    { code: "JOR", text: "Organizar mural/bilhetes de incentivo de outras turmas." },
-                    { code: "JOR", text: "Monitorar indicadores de frequência na quinzena anterior nas turmas envolvidas e realizar busca ativa." },
-                    { code: "PLA", text: "Realizar as tarefas da 1ª etapa do Plano de Aprendizagem atualizado (publicadas na semana anterior)." },
-                    { code: "TUR", text: "Fazer apoio presencial nas aulas de Orientação de Estudos, Língua Portuguesa e Matemática das turmas que mais precisam de apoio." }
-                ]
-            },
-            {
-                week: 10,
-                items: [
-                    { code: "JOR", text: "Organizar lanche especial do dia da prova." },
-                    { code: "JOR", text: "Revisar logística da aplicação (salas, horários, equipe)." },
-                    { code: "PLA", text: "Realizar a 2ª etapa do Plano de Aprendizagem atualizado." },
-                    { code: "BRA", text: "Atualizar ranking mural/painel com indicadores da 4ª quinzena." }
-                ]
-            },
-            {
-                week: 11,
-                items: [
-                    { code: "JOR", text: "Organizar plano logístico do Dia D da Recomposição." },
-                    { code: "JOR", text: "Garantir que todos os alunos terão carta dos pais/responsáveis e da direção." },
-                    { code: "JOR", text: "Preparar cartas do gestor e de professores/tutores (opcional)." },
-                    { code: "JOR", text: "Monitorar indicadores de frequência na quinzena anterior nas turmas envolvidas e realizar busca ativa." },
-                    { code: "PLA", text: "Realizar as tarefas da 2ª etapa do Plano de Aprendizagem atualizado (publicadas na semana anterior)." },
-                    { code: "TUR", text: "Fazer apoio presencial nas aulas de Orientação de Estudos, Língua Portuguesa e Matemática das turmas que mais precisam de apoio." }
-                ]
-            },
-            {
-                week: 12,
-                items: [
-                    { code: "JOR", text: "Executar o Dia D da Recomposição das Aprendizagens." },
-                    { code: "JOR", text: "Organizar falas inspiradoras da gestão com cada turma." },
-                    { code: "JOR", text: "Definir envelope com cartas de apoio." },
-                    { code: "JOR", text: "Reforçar a motivação e reconhecimento da evolução nas conversas individuais dos estudantes com professores/tutores." },
-                    { code: "PLA", text: "Iniciar 3ª etapa do Plano de Aprendizagem atualizado." },
-                    { code: "BRA", text: "Atualizar ranking mural/painel com indicadores da 5ª quinzena." }
-                ]
-            },
-            {
-                week: "final",
-                items: [
-                    { code: "JOR", text: "Preparar checklist logístico final para aplicação do SAEB." },
-                    { code: "JOR", text: "Elaborar dia de descompressão/relaxamento para as turmas que farão o SAEB." },
-                    { code: "JOR", text: "Organizar o ambiente escolar para acolher os alunos no dia da prova." },
-                    { code: "JOR", text: "Garantir todos os detalhes do lanche especial para o dia da prova." },
-                    { code: "JOR", text: "Organizar fala final de motivação com las turmas, reconhecendo o esforço e evolução demonstrados ao longo da Jornada." },
-                    { code: "JOR", text: "Monitorar indicadores de frequência na quinzena anterior nas turmas envolvidas e realizar busca ativa." },
-                    { code: "PLA", text: "Realizar as tarefas da 3ª etapa do Plano de Aprendizagem atualizado (publicadas na semana anterior)." },
-                    { code: "TUR", text: "Fazer apoio presencial nas aulas de Orientação de Estudos, Língua Portuguesa e Matemática das turmas que mais precisam de apoio." }
-                ]
-            },
-            {
-                week: "saeb",
-                items: [
-                    { code: "JOR", text: "Realizar a aplicação da prova SAEB." },
-                    { code: "JOR", text: "Entregar lanche especial e cartas de apoio antes do início da prova." },
-                    { code: "JOR", text: "Acolher os estudantes, dizer palavras de incentivo e ajudá-los a manterem a calma para a realização da prova." },
-                    { code: "BRA", text: "Atualizar ranking mural/painel com indicadores da 6ª quinzena." }
-                ]
-            },
-            {
-                week: "encerramento",
-                items: [
-                    { code: "BRA", text: "Consolidar pontuação final do Brasileirão SAEB." },
-                    { code: "BRA", text: "Organizar evento de encerramento: anúncio da turma campeã, entrega da Taça Brasileirão SAEB, celebração dos resultados." },
-                    { code: "BRA", text: "Divulgar o resultado final para toda a comunidade escolar." }
-                ]
-            }
-        ];
-
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', function() {
-            // Render school list
-            const schoolList = document.getElementById('school-list');
-            schools.forEach((school, index) => {
-                const li = document.createElement('li');
-                li.className = 'px-4 py-3 hover:bg-red-50 cursor-pointer flex items-center';
-                li.innerHTML = `
-                    <i class="fas fa-school text-red-500 mr-3"></i>
-                    <span class="school-name">${school}</span>
-                `;
-                li.dataset.school = school;
-                li.addEventListener('click', () => loadSchoolChecklist(school));
-                schoolList.appendChild(li);
-            });
-
-            // Search functionality
-            document.getElementById('search-school').addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-                const schoolItems = document.querySelectorAll('#school-list li');
-                
-                schoolItems.forEach(item => {
-                    const schoolName = item.querySelector('.school-name').textContent.toLowerCase();
-                    if (schoolName.includes(searchTerm)) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-
-            // Week filter buttons
-            document.querySelectorAll('.week-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Update active button
-                    document.querySelectorAll('.week-btn').forEach(b => {
-                        b.classList.remove('bg-blue-100', 'text-blue-800');
-                        b.classList.add('bg-gray-100', 'text-gray-800');
-                    });
-                    this.classList.remove('bg-gray-100', 'text-gray-800');
-                    this.classList.add('bg-blue-100', 'text-blue-800');
-                    
-                    // Filter items
-                    const week = this.dataset.week;
-                    const items = document.querySelectorAll('.checklist-item');
-                    
-                    items.forEach(item => {
-                        if (week === 'all' || item.dataset.week === week) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-
-        // Load checklist for a specific school
-        function loadSchoolChecklist(school) {
-            // Update selected school in the UI
-            document.getElementById('current-school').textContent = school;
+        // Countdown Timer
+        function updateCountdown() {
+            // Set the date we're counting down to (90 days from now)
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 81);
             
-            // Highlight selected school in the list
-            document.querySelectorAll('#school-list li').forEach(li => {
-                li.classList.remove('bg-red-100');
-                if (li.dataset.school === school) {
-                    li.classList.add('bg-red-100');
+            // Update the countdown every 1 second
+            const x = setInterval(function() {
+                // Get today's date and time
+                const now = new Date().getTime();
+                
+                // Find the distance between now and the countdown date
+                const distance = countDownDate - now;
+                
+                // Time calculations for days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Display the result
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+                
+                // If the countdown is finished, clear interval
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("days").innerHTML = "0";
+                    document.getElementById("hours").innerHTML = "00";
+                    document.getElementById("minutes").innerHTML = "00";
+                    document.getElementById("seconds").innerHTML = "00";
                 }
-            });
-            
-            // Render checklist items
-            const container = document.getElementById('checklist-container');
-            container.innerHTML = '';
-            
-            // Get saved data from localStorage
-            const savedData = JSON.parse(localStorage.getItem(`checklist_${school}`)) || {};
-            
-            checklistItems.forEach(group => {
-                const weekTitle = getWeekTitle(group.week);
-                const weekDiv = document.createElement('div');
-                weekDiv.className = 'mb-8 checklist-item';
-                weekDiv.dataset.week = group.week;
-                
-                weekDiv.innerHTML = `
-                    <h3 class="text-xl font-semibold mb-4 text-red-700 border-b border-gray-200 pb-2">${weekTitle}</h3>
-                    <div class="space-y-3 week-${group.week}-items"></div>
-                `;
-                
-                container.appendChild(weekDiv);
-                
-                const itemsContainer = weekDiv.querySelector(`.week-${group.week}-items`);
-                
-                group.items.forEach((item, idx) => {
-                    const itemId = `item_${group.week}_${idx}`;
-                    const isChecked = savedData[itemId] || false;
-                    
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = `checkbox-container p-3 border rounded-lg ${isChecked ? 'completed' : ''}`;
-                    itemDiv.innerHTML = `
-                        <div class="flex items-start">
-                            <input type="checkbox" id="${itemId}" 
-                                   class="mt-1 h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500" 
-                                   ${isChecked ? 'checked' : ''}>
-                            <label for="${itemId}" class="checkbox-label ml-3 block text-gray-700">
-                                <span class="font-medium px-2 py-1 rounded ${getCodeColor(item.code)} mr-2">${item.code}</span>
-                                ${item.text}
-                            </label>
-                        </div>
-                    `;
-                    
-                    // Add event listener for checkbox
-                    const checkbox = itemDiv.querySelector('input');
-                    checkbox.addEventListener('change', function() {
-                        const isChecked = this.checked;
-                        itemDiv.classList.toggle('completed', isChecked);
-                        
-                        // Save to localStorage
-                        const savedData = JSON.parse(localStorage.getItem(`checklist_${school}`)) || {};
-                        savedData[itemId] = isChecked;
-                        localStorage.setItem(`checklist_${school}`, JSON.stringify(savedData));
-                    });
-                    
-                    itemsContainer.appendChild(itemDiv);
-                });
-            });
-            
-            // Show all items by default
-            document.querySelector('.week-btn[data-week="all"]').click();
+            }, 1000);
         }
-
-        // Helper function to get week title
-        function getWeekTitle(week) {
-            if (week === 'final') return 'Semanas Finais — 13 a 17 de outubro';
-            if (week === 'saeb') return 'Aplicação SAEB — 20 a 31 de outubro';
-            if (week === 'encerramento') return 'Encerramento — Data após a realização do SAEB';
-            return `Semana ${week} — ${getWeekDates(week)}`;
+        
+        // Pillar Tabs
+        function openPillar(pillarName) {
+            // Hide all pillar contents
+            const pillarContents = document.getElementsByClassName("pillar-content");
+            for (let i = 0; i < pillarContents.length; i++) {
+                pillarContents[i].classList.add("hidden");
+            }
+            
+            // Show the selected pillar content
+            document.getElementById(pillarName).classList.remove("hidden");
+            
+            // Update active tab
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("tab-active");
+            }
+            
+            // Find the button that matches the pillar name
+            for (let i = 0; i < tabButtons.length; i++) {
+                if (tabButtons[i].getAttribute("onclick").includes(pillarName)) {
+                    tabButtons[i].classList.add("tab-active");
+                    break;
+                }
+            }
         }
-
-        // Helper function to get week dates
-        function getWeekDates(week) {
-            const dates = {
-                1: '21 a 25 de julho',
-                2: '28 de julho a 01 de agosto',
-                3: '04 a 08 de agosto',
-                4: '11 a 15 de agosto',
-                5: '18 a 22 de agosto',
-                6: '25 a 29 de agosto',
-                7: '01 a 05 de setembro',
-                8: '08 a 12 de setembro',
-                9: '15 a 19 de setembro',
-                10: '22 a 26 de setembro',
-                11: '29 de setembro a 03 de outubro',
-                12: '06 a 10 de outubro'
-            };
-            return dates[week] || '';
-        }
-
-        // Helper function to get color for code
-        function getCodeColor(code) {
-            const colors = {
-                'JOR': 'bg-blue-100 text-blue-800',
-                'PLA': 'bg-green-100 text-green-800',
-                'BRA': 'bg-yellow-100 text-yellow-800',
-                'TUR': 'bg-purple-100 text-purple-800'
-            };
-            return colors[code] || 'bg-gray-100 text-gray-800';
-        }
+        
+        // Initialize
+        document.addEventListener("DOMContentLoaded", function() {
+            updateCountdown();
+        });
     </script>
 </body>
 </html>
