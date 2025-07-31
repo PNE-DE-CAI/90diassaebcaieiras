@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada 90 dias SAEB - Diretoria Regional de Caieiras</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .role-icon {
+            transition: all 0.3s ease;
+        }
+        .role-card:hover .role-icon {
+            transform: scale(1.1);
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #e53e3e 0%, #b91c1c 100%);
+        }
+    </style>
+</head>
+<body class="bg-white font-sans">
+    <!-- Header -->
+    <header class="header-gradient text-white shadow-lg">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-bold">Papel de Cada Membro da Escola na Jornada 90 dias SAEB</h1>
+                    <p class="mt-2 text-red-100">Diretoria Regional de Caieiras</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-md">
+                    <h2 class="text-red-600 font-bold text-xl">"O sucesso depende de uma atuação conjunta, organizada e intencional"</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Introduction -->
+        <section class="mb-16">
+            <div class="bg-black text-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4 text-red-400">Papel de Cada Membro da Escola</h2>
+                <p class="mb-4">A Jornada 90 dias SAEB requer o comprometimento de toda a equipe escolar, com responsabilidades específicas para cada profissional, garantindo a execução coerente e integrada das estratégias de recomposição, mobilização e acompanhamento dos resultados.</p>
+                <p class="font-medium text-red-300">Selecione um cargo abaixo para ver as responsabilidades:</p>
+            </div>
+        </section>
+
+        <!-- Roles Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Diretor Escolar -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('diretor')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-user-tie text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Diretor Escolar</h3>
+                    <p class="text-gray-600">Organiza a implementação de todas as ações e articulação com a Diretoria de Ensino.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Liderança</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vice-Diretor Escolar -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('vice-diretor')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-user-shield text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Vice-Diretor Escolar</h3>
+                    <p class="text-gray-600">Auxilia na supervisão das ações e acompanha a frequência escolar.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Apoio</span>
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-1">Organização</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coordenador de Gestão Pedagógica -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('cgp')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-chalkboard-teacher text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Coordenador Pedagógico</h3>
+                    <p class="text-gray-600">Apoia e orienta professores na execução do Plano de Aprendizagem.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Pedagogia</span>
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-1">Monitoramento</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professor de Orientação de Estudos -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('prof-oe')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-book-reader text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Professor de OE</h3>
+                    <p class="text-gray-600">Executor do Plano de Aprendizagem nas aulas de Orientação de Estudos.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Ensino</span>
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-1">Recomposição</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professor de LP e Matemática -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('prof-lp-matematica')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-square-root-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Professor de LP/Matemática</h3>
+                    <p class="text-gray-600">Integra a Jornada ao planejamento de aulas e aplica listas de exercícios SAEB.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Conteúdo</span>
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-1">Intervenção</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aluno Monitor -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('aluno-monitor')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-hands-helping text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Aluno Monitor</h3>
+                    <p class="text-gray-600">Auxilia o professor e estimula colegas a concluírem as tarefas.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Apoio</span>
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-1">Mediação</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professor Tutor -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('prof-tutor')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-user-graduate text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Professor Tutor</h3>
+                    <p class="text-gray-600">Atua com alunos em risco de não avançar de nível com estratégias personalizadas.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Acompanhamento</span>
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-1">Personalização</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipe Escolar -->
+            <div class="role-card bg-white border-l-4 border-red-600 rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer" onclick="showRoleDetails('equipe')">
+                <div class="p-6">
+                    <div class="role-icon text-red-600 mb-4">
+                        <i class="fas fa-users text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-2">Equipe Escolar</h3>
+                    <p class="text-gray-600">Todos os membros contribuindo para o sucesso da Jornada 90 dias SAEB.</p>
+                    <div class="mt-4">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Colaboração</span>
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-1">Integração</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Role Details Modal -->
+        <div id="roleModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="sticky top-0 bg-red-600 text-white p-4 flex justify-between items-center">
+                    <h3 id="modalTitle" class="text-xl font-bold"></h3>
+                    <button onclick="closeModal()" class="text-white hover:text-gray-200">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div id="modalContent" class="p-6 text-gray-800"></div>
+                <div class="bg-gray-100 px-6 py-4 flex justify-end">
+                    <button onclick="closeModal()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold text-red-400">Diretoria Regional de Caieiras</h3>
+                    <p class="mt-1 text-gray-300">Jornada 90 dias SAEB</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-red-400 transition-colors">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-red-400 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-red-400 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400">
+                <p>© 2025 Diretoria Regional de Caieiras. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Role details data
+        const roles = {
+            'diretor': {
+                title: 'Diretor Escolar',
+                icon: 'fa-user-tie',
+                responsibilities: [
+                    'Organiza a implementação de todas as ações da Jornada 90 dias SAEB',
+                    'Garante a articulação com a Diretoria de Ensino',
+                    'Supervisiona o acompanhamento das turmas prioritárias',
+                    'Assegura que as metas do SAEB façam parte do planejamento estratégico da escola',
+                    'Coordena a equipe escolar para o cumprimento das metas estabelecidas',
+                    'Promove reuniões periódicas para avaliação dos resultados'
+                ]
+            },
+            'vice-diretor': {
+                title: 'Vice-Diretor Escolar',
+                icon: 'fa-user-shield',
+                responsibilities: [
+                    'Auxilia na supervisão das ações da Jornada 90 dias SAEB',
+                    'Acompanha a frequência escolar dos alunos',
+                    'Colabora na organização dos espaços, horários e recursos necessários',
+                    'Apoia as ações de engajamento de estudantes e famílias',
+                    'Substitui o diretor em suas ausências, mantendo a continuidade das ações',
+                    'Auxilia na comunicação entre os diferentes setores da escola'
+                ]
+            },
+            'cgp': {
+                title: 'Coordenador de Gestão Pedagógica (CGP)',
+                icon: 'fa-chalkboard-teacher',
+                responsibilities: [
+                    'Apoia e orienta os professores de OE, Língua Portuguesa e Matemática',
+                    'Acompanha a execução do Plano de Aprendizagem e das listas de exercícios SAEB',
+                    'Monitora indicadores de realização e desempenho no BI',
+                    'Organiza devolutivas junto aos professores',
+                    'Propor intervenções pedagógicas baseadas em dados',
+                    'Monitora a evolução das turmas, garantindo o foco no avanço de nível',
+                    'Articula as ações entre os diferentes professores e áreas do conhecimento'
+                ]
+            },
+            'prof-oe': {
+                title: 'Professor de Orientação de Estudos',
+                icon: 'fa-book-reader',
+                responsibilities: [
+                    'Principal executor do Plano de Aprendizagem nas aulas de OE',
+                    'Conduz as missões ou jornadas do material SP em Ação',
+                    'Orienta a realização das tarefas de verificação',
+                    'Acompanha o desempenho dos estudantes sistematicamente',
+                    'Reporta evidências de progresso à coordenação pedagógica',
+                    'Atua na recomposição de aprendizagem, considerando os níveis de proficiência',
+                    'Identifica dificuldades individuais e propõe estratégias de superação'
+                ]
+            },
+            'prof-lp-matematica': {
+                title: 'Professor de Língua Portuguesa e Matemática',
+                icon: 'fa-square-root-alt',
+                responsibilities: [
+                    'Integra o trabalho da Jornada ao planejamento de suas aulas regulares',
+                    'Aplica as listas de exercícios SAEB organizadas por descritor e grau de dificuldade',
+                    'Promove intervenções alinhadas às defasagens mapeadas',
+                    'Reforça habilidades prioritárias identificadas',
+                    'Monitora a realização e o desempenho dos estudantes nas tarefas',
+                    'Complementa o trabalho desenvolvido nas aulas de Orientação de Estudos',
+                    'Fornece feedback contínuo aos alunos sobre seu progresso'
+                ]
+            },
+            'aluno-monitor': {
+                title: 'Aluno Monitor',
+                icon: 'fa-hands-helping',
+                responsibilities: [
+                    'Auxilia o professor no acompanhamento das atividades em sala',
+                    'Estimula colegas a concluírem as tarefas propostas',
+                    'Organiza o ambiente de trabalho para facilitar a aprendizagem',
+                    'Apoia a comunicação entre estudantes e professores',
+                    'Contribui para criar uma cultura de corresponsabilidade na turma',
+                    'Identifica colegas com dificuldades e os encaminha para apoio',
+                    'Serve como modelo positivo de engajamento e dedicação'
+                ]
+            },
+            'prof-tutor': {
+                title: 'Professor Tutor nos Anos Finais',
+                icon: 'fa-user-graduate',
+                responsibilities: [
+                    'Atua com foco em alunos em risco de não avançar de nível',
+                    'Desenvolve estratégias de apoio personalizadas para cada aluno',
+                    'Realiza intervenções complementares ao Plano de Aprendizagem',
+                    'Articula sua atuação com o CGP e demais professores',
+                    'Garante que estudantes com maiores dificuldades não fiquem para trás',
+                    'Apoia o engajamento dos estudantes com incentivo e escuta ativa',
+                    'Fornece orientação individualizada sobre métodos de estudo'
+                ]
+            },
+            'equipe': {
+                title: 'Equipe Escolar',
+                icon: 'fa-users',
+                responsibilities: [
+                    'Todos os profissionais contribuem para o clima escolar favorável à aprendizagem',
+                    'Apoiam a implementação das ações da Jornada em suas respectivas áreas',
+                    'Comunicam-se de forma eficiente para garantir a integração das ações',
+                    'Participam ativamente das formações e reuniões sobre a Jornada',
+                    'Mantêm-se atualizados sobre os objetivos e metas do SAEB',
+                    'Colaboram para criar um ambiente de alta expectativa de aprendizagem',
+                    'Celebram os avanços e conquistas ao longo do processo'
+                ]
+            }
+        };
+
+        // Show role details in modal
+        function showRoleDetails(roleId) {
+            const role = roles[roleId];
+            document.getElementById('modalTitle').textContent = role.title;
+            
+            let content = `
+                <div class="flex items-center mb-6">
+                    <div class="bg-red-100 p-4 rounded-full mr-4">
+                        <i class="fas ${role.icon} text-red-600 text-3xl"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900">Responsabilidades Principais</h4>
+                </div>
+                <ul class="space-y-3">`;
+            
+            role.responsibilities.forEach(resp => {
+                content += `
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="h-2 w-2 bg-red-600 rounded-full"></div>
+                        </div>
+                        <p class="ml-3">${resp}</p>
+                    </li>`;
+            });
+            
+            content += `</ul>`;
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('roleModal').classList.remove('hidden');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('roleModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('roleModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
