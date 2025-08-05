@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jornada 90 dias SAEB - Controle de Escolas</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,6 +31,13 @@
             border-color: #dc3545;
         }
     </style>
+    <header class="mb-6 text-center">
+        <div class="mt-4">
+            <button id="save-to-sheets-btn" class="bg-red-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition-colors">
+                <i class="fas fa-save mr-2"></i>Salvar dados na planilha
+            </button>
+        </div>
+    </header>
 </head>
 <body class="bg-gray-100">
     <!-- Banner with Logo -->
@@ -511,6 +518,47 @@
             };
             return colors[code] || 'bg-gray-100 text-gray-800';
         }
+// --- ADICIONE ESTE CÓDIGO NO FINAL DO SEU BLOCO <script> ---
+
+// Cole aqui o URL do seu Apps Script que você copiou no Passo 1
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcvYzwXg-gT-NQ8-LIIYZrRVy4KqjFQFZwSBmEBTuCjHXKg6S-M1IOJkit1fjMYxm_/exec';
+
+document.getElementById('save-to-sheets-btn').addEventListener('click', async () => {
+    const schoolList = JSON.parse(localStorage.getItem('checklist_ADAIL JARBAS DUCLOS')) || {};
+    const allData = {};
+
+    // Coleta todos os dados de todas as escolas do localStorage
+    schools.forEach(school => {
+        const savedData = JSON.parse(localStorage.getItem(`checklist_${school}`)) || {};
+        if (Object.keys(savedData).length > 0) {
+            allData[school] = savedData;
+        }
+    });
+
+    if (Object.keys(allData).length === 0) {
+        alert('Não há dados de checklist para salvar.');
+        return;
+    }
+
+    try {
+        const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Importante para evitar erros de CORS
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(allData),
+        });
+
+        // Como usamos `no-cors`, a resposta não pode ser lida.
+        // Apenas verificamos se a requisição foi feita sem erros.
+        alert('Dados enviados com sucesso! Verifique sua planilha.');
+
+    } catch (error) {
+        console.error('Erro ao enviar dados:', error);
+        alert('Ocorreu um erro ao salvar os dados. Verifique o console do navegador.');
+    }
+});
     </script>
 </body>
 </html>
